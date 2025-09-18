@@ -1,61 +1,78 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Каталог Игр на Laravel
+Это учебный веб-проект, созданный для демонстрации основ веб-разработки на фреймворке Laravel. Приложение представляет собой простой каталог игр с системой пользователей и разделением прав.
+Архитектура проекта
+Проект разделен на две основные части, которые работают совместно:
+Бэкенд (Backend): Написан на PHP/Laravel и запущен внутри Docker-контейнеров. Он отвечает за всю логику, работу с базой данных и предоставление данных.
+Фронтенд (Frontend): Управляется с помощью Node.js и Vite. Он запускается на вашем локальном компьютере и отвечает за сборку стилей (CSS) и скриптов (JavaScript), обеспечивая современный процесс разработки.
+Что умеет проект?
+Для всех посетителей:
+Просматривать список доступных игр.
+Заходить на страницу с детальным описанием каждой игры.
+Регистрироваться и входить в свой аккаунт.
+Для Администраторов:
+Просматривать абсолютно все игры (включая скрытые).
+Добавлять новые игры в каталог.
+Редактировать информацию о существующих играх.
+Удалять игры из каталога.
+Что нужно для запуска? (Требования)
+Вам понадобится установить три программы:
+Git — для скачивания кода проекта.
+Docker Desktop — для запуска бэкенда (сервера и базы данных).
+Node.js (рекомендуется версия LTS) — для управления и сборки фронтенд-части проекта.
+🚀 Пошаговая инструкция по запуску
+Следуйте этим шагам, чтобы запустить проект на вашем компьютере.
+Шаг 1: Скачивание проекта
+Откройте терминал или командную строку (например, Git Bash для Windows).
+code
+Bash
+# 1. Скачиваем проект с GitHub (замените URL на ваш)
+git clone https://github.com/ВАШ_ЛОГИН/НАЗВАНИЕ_РЕПОЗИТОРИЯ.git
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 2. Заходим в папку с проектом
+cd НАЗВАНИЕ_РЕПОЗИТОРИЯ
+Шаг 2: Настройка и запуск бэкенда (Docker)
+Здесь мы запустим серверную часть приложения.
+Создайте файл конфигурации. Этот файл хранит настройки подключения к базе данных.
+Если вы используете Windows: copy .env.example .env
+Если вы используете macOS/Linux: cp .env.example .env
+Запустите Docker-контейнеры. Убедитесь, что приложение Docker Desktop у вас запущено.
+code
+docker-compose up -d --build
+Что это делает? Docker создает и запускает виртуальную среду с PHP, веб-сервером Nginx и базой данных PostgreSQL. Первый запуск может занять несколько минут.
+Настройте Laravel внутри контейнера.
+code
+# Генерируем ключ безопасности
+docker-compose exec app php artisan key:generate
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Создаем таблицы в базе данных и наполняем их тестовыми играми
+docker-compose exec app php artisan migrate --seed
+Бэкенд запущен! Серверная часть работает, но сайт пока будет выглядеть "сломанным", так как стили и скрипты еще не готовы.
+Шаг 3: Настройка и запуск фронтенда (локально)
+Теперь мы соберем "внешний вид" сайта. Эти команды выполняются в том же терминале, в той же папке проекта.
+Установите зависимости.
+code
+npm install
+Что это делает? npm (менеджер пакетов Node.js) читает файл package.json и скачивает все необходимые для фронтенда библиотеки (Vite, Tailwind CSS) в папку node_modules.
+Соберите файлы фронтенда.
+code
+npm run build
+```    > **Что это делает?** Эта команда берет все CSS и JS файлы, оптимизирует их и складывает в готовую для показа папку `public/build`. Laravel будет автоматически использовать эти собранные файлы.
+✅ Готово! Как пользоваться сайтом?
+Проект полностью запущен и готов к работе!
+Откройте сайт в вашем браузере по адресу: http://localhost:8000.
+Вы можете зарегистрироваться, используя форму на сайте.
+Как стать администратором?
+Чтобы получить доступ к созданию, редактированию и удалению игр, вашему пользователю нужна роль администратора.
+Откройте веб-интерфейс базы данных (Adminer) в браузере: http://localhost:8080.
+Войдите в базу данных, используя следующие данные:
+Система: PostgreSQL
+Сервер: db
+Имя пользователя: laraveluser (или то, что указано в .env файле)
+Пароль: password (или то, что указано в .env файле)
+База данных: laravel (или то, что указано в .env файле)
+В левой колонке нажмите на таблицу users.
+Вы увидите список всех зарегистрированных пользователей. Найдите своего, поставьте галочку "Изменить" напротив него.
+Прокрутите вправо до колонки role и измените значение с user на admin.
+Нажмите кнопку "Сохранить".
+Теперь, если вы зайдете на сайт под своим логином, вы увидите кнопки для управления играми!
+Для разработчиков: Вместо команды npm run build, вы можете запустить npm run dev в отдельном терминале. Это запустит сервер для разработки, который будет автоматически пересобирать стили и скрипты при каждом сохранении файла.
